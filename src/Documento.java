@@ -8,6 +8,9 @@ public class Documento {
     public ArrayList<String> autor;
     public ArrayList<String> principaisAssuntos;
     public ArrayList<String> assuntosMN;
+    public double vetDoc[];
+    public double normaVet;
+    public String consulta;
 
     public Documento(int colecao, int idDoc, ArrayList<String> titulo, ArrayList<String> autor, ArrayList<String> mj, ArrayList<String> mn){
         this.colecao = colecao;
@@ -17,6 +20,25 @@ public class Documento {
         this.principaisAssuntos = mj;
         this.assuntosMN = mn;
     }
+
+    public Documento(int colecao, int idDoc, String consulta){
+        this.colecao = colecao;
+        this.idDoc = idDoc;
+        this.consulta = consulta;
+    }
+
+    public void setVetDoc(double[] vetDoc) {
+        this.vetDoc = vetDoc;
+    }
+
+    public double[] getVetDoc() {
+        return vetDoc;
+    }
+
+    public void setNormaVet(double normaVet) {
+        this.normaVet = normaVet;
+    }
+
     public static void imprime(Documento doc){
         System.out.printf(" >>>colecao =  %d\n", doc.colecao);
         System.out.printf(" >>>ID =  %d\n", doc.idDoc);

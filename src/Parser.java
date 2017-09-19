@@ -1,5 +1,3 @@
-import jdk.internal.cmm.SystemResourcePressureImpl;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,11 +9,12 @@ import static java.lang.Integer.parseInt;
 
 public class Parser {
 
-    public static int lerArquivo(Vocabulario vocabulario) throws IOException{
+    public static int qtdDoc = 0;
+
+    public static void lerArquivo(Vocabulario vocabulario) throws IOException{
         int k = 0;
-        int qtdDoc=0;
-        for(k=74; k<75; k++) {
-            String nome = "Base/cf"+k;
+        for(k=74; k<79; k++) {
+            String nome = "../Base/cf"+k;
 
             String linha[] = new String[2];
             String linha2[] = new String[2];
@@ -38,7 +37,7 @@ public class Parser {
 
                     //Documento.imprime(docAux);
                     Parser.processaTermo(vocabulario, docAux);
-                    qtdDoc++;
+                    Parser.qtdDoc++;
 
                     continue;
                 }
@@ -128,8 +127,6 @@ public class Parser {
             }
             arquivo.close();
         }
-
-            return qtdDoc;
     }
     public static void processaTermo(Vocabulario vocabulario, Documento doc){
         String termo;
@@ -173,9 +170,39 @@ public class Parser {
         }
     }
 
+    public static int calculaFrequenciaNoDocumento(String termo, Documento documento){
+        Iterator<String> titulo = documento.titulo.iterator();
+        Iterator<String> autor = documento.autor.iterator();
+        Iterator<String> mj = documento.principaisAssuntos.iterator();
+        Iterator<String> mn = documento.assuntosMN.iterator();
 
+        int freqDoc = 0;
 
+        while(titulo.hasNext()){
+            if(termo.toLowerCase().equals(titulo.next().toLowerCase())){
+                freqDoc++;
+            }
+        }
 
+        while(autor.hasNext()){
+            String aux = autor.next().toLowerCase();
+            if(termo.toLowerCase().equals(aux)){
+                freqDoc++;
+            }
+        }
+        while(mj.hasNext()){
+            if(termo.toLowerCase().equals(mj.next().toLowerCase())){
+                freqDoc++;
+            }
+        }
+        while(mn.hasNext()) {
+            String aux = mn.next().toLowerCase();
+            if (termo.toLowerCase().equals(aux)) {
+                freqDoc++;
+            }
+        }
+        return freqDoc;
+    }
 
 }
 
