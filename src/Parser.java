@@ -15,7 +15,7 @@ public class Parser {
         int k = 0;
         int qtdDoc=0;
         for(k=74; k<75; k++) {
-            String nome = "Base/teste";
+            String nome = "Base/cf"+k;
 
             String linha[] = new String[2];
             String linha2[] = new String[2];
@@ -109,7 +109,7 @@ public class Parser {
                 if (line.charAt(0) == 'M' && line.charAt(1) == 'N') {
                     MN = new ArrayList<String>();
                     aux = "";
-                    while (line.charAt(0) != 'A' && line.charAt(1) != 'E') {
+                    while (line.charAt(0) != 'A'&& line.charAt(0) != 'E') {
                         aux = aux + line;
                         line = arquivo.readLine();
                     }
@@ -128,6 +128,7 @@ public class Parser {
             }
             arquivo.close();
         }
+
             return qtdDoc;
     }
     public static void processaTermo(Vocabulario vocabulario, Documento doc){
