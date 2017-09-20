@@ -13,8 +13,8 @@ public class Parser {
 
     public static void lerArquivo(Vocabulario vocabulario) throws IOException{
         int k = 0;
-        for(k=74; k<79; k++) {
-            String nome = "../Base/cf"+k;
+        for(k=74; k<75; k++) {
+            String nome = "Base/cf"+k;
 
             String linha[] = new String[2];
             String linha2[] = new String[2];
@@ -35,7 +35,7 @@ public class Parser {
                     //cria o novo documento
                     Documento docAux = new Documento(parseInt(linha[1]), parseInt(linha[1]), titulo, autor, MJ, MN);
 
-                    //Documento.imprime(docAux);
+                    Documento.imprime(docAux);
                     Parser.processaTermo(vocabulario, docAux);
                     Parser.qtdDoc++;
 
@@ -81,6 +81,8 @@ public class Parser {
                     for (l = 0; l < aux3.length; l++) {
                         if (aux3[l].length() != 0) {
                             aux3[l] = aux3[l].replace('.', '#');
+                            aux3[l] = aux3[l].replace(':', '#');
+                            aux3[l] = aux3[l].replace(',', '#');
                             String aux6[] = aux3[l].split("#");
                             titulo.add(aux6[0]);
                         }
@@ -99,7 +101,10 @@ public class Parser {
                     for (p = 0; p < aux4.length; p++) {
                         if (aux4[p].length() != 0) {
                             aux4[p] = aux4[p].replace('.', '#');
+                            aux4[p] = aux4[p].replace(':', '#');
+                            aux4[p] = aux4[p].replace(',', '#');
                             String aux6[] = aux4[p].split("#");
+
                             MJ.add(aux6[0]);
                             //System.out.println(aux4[p]);
                         }
@@ -118,7 +123,11 @@ public class Parser {
                     for (q = 0; q < aux5.length; q++) {
                         if (aux5[q].length() != 0) {
                             aux5[q] = aux5[q].replace('.', '#');
+                            aux5[q] = aux5[q].replace(':', '#');
+                            aux5[q] = aux5[q].replace(',', '#');
+
                             String aux6[] = aux5[q].split("#");
+
                             MN.add(aux6[0]);
                         }
                     }
